@@ -1,2 +1,24 @@
-# vue3.0-admin
-vue3.0+ant+less，公用table，form，descriptions，axios等使用，only 2022.1.27
+# vue-3.0
+
+## Project setup
+```
+yarn install
+```
+
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Lints and fixes files
+```
+yarn lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
