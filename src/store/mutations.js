@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import router from '@/router/index';
 import store from '@/store/index';
+import { Modal, message } from 'ant-design-vue';
 const mutations = {
     //设置全局tabnav
     setTabNav:(state,obj)=>{
@@ -49,6 +50,30 @@ const mutations = {
     //移除缓存
     removeStorage(state,val){
       sessionStorage.removeItem(val);  
-   }
+    },
+    //弹框提示
+    confirm(state,obj={content:'',callback:()=>{},title:'提示'}){
+      Modal.confirm({
+        title: obj.title,
+        content: obj.content,
+        onOk() {
+          if(obj.callback){
+            obj.callback()
+          }
+        },
+        okText:'确定',
+        cancelText: '取消',
+        onCancel() {
+        
+        },
+      });
+    },
+    //消息提示
+    message(state,obj={content:'',type:'fail',duration:3}){
+      if(obj.type=='fail'){
+        message.error(obj.content, obj.duration);
+      }
+      message.success(obj.content, obj.duration);
+    }
   }
   export default mutations

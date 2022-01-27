@@ -15,6 +15,7 @@
 <script>
 import { ref, reactive, toRaw, watch, getCurrentInstance , onMounted  } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 import Search from "@/components/Search/index.vue"
 import Table from "@/components/Table/index.vue"
 export default {
@@ -24,7 +25,8 @@ export default {
         Table
     },
 	setup() {
-
+		const store = useStore()
+		
 		const useData=reactive({
 			searchData:[
                 {
@@ -116,7 +118,16 @@ export default {
 						{
 							title:'删除',
 							click:(column,key)=>{
-                                 useData.tableData.splice(key,1);
+								store.commit('confirm',{
+									content:'确认删除？',
+									callback:()=>{
+									   useData.tableData.splice(key,1);
+									   store.commit('message',{
+										   content:'删除成功!'
+									   });
+									}
+								})
+								
 							}
 						}
 					]
