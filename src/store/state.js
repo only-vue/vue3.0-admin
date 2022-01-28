@@ -1,6 +1,7 @@
 
 const state = {
     menuList:[],
-    activeKey:''
+    activeKey:'',
+    collapsed:true
   }
   export default state

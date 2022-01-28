@@ -4,9 +4,9 @@
           <img src="../../assets/images/icon/logo.png" />
       </div>
       <div class="content">
-          <div class="menu-c-icon">
-               <MenuFoldOutlined />  
-               <!-- <MenuUnfoldOutlined /> -->
+          <div class="menu-c-icon" @click="store.state.collapsed=!store.state.collapsed">
+               <MenuFoldOutlined v-if="store.state.collapsed" />  
+               <MenuUnfoldOutlined v-else />
           </div>
           <div class="fr-options">
               <a-badge count="5">
@@ -36,17 +36,20 @@
 <script>
 import { ref, reactive, toRaw } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 export default {
   name: 'Header',
   setup(props, context) {
     const router = useRouter();
+    const store = useStore();
 
     const handleOutSys=()=>{
         router.push('/login'); 
     }
 
     return{
-      handleOutSys
+       handleOutSys,
+       store
     }
      
   }
@@ -75,6 +78,7 @@ export default {
         .menu-c-icon{
             margin: 0 0 0 20px;
             float: left;
+            cursor: pointer;
             .anticon{
                 color: #fff;
             }

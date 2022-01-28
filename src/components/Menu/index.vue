@@ -5,11 +5,14 @@
           v-model:openKeys="openKeys"
           v-model:selectedKeys="selectedKeys"
           mode="inline"
+          :inline-collapsed="store.state.collapsed"
           @click="handleClick"
         >
           <a-sub-menu  v-for="(item,index) in menuData" :key="index">
             <template #icon>
-               <component :is="item.icon" />
+               <span class="anticon">
+                 <component :is="item.icon" />
+               </span>
             </template>
             <template #title>{{item.name}}</template>
             <a-menu-item v-for="subItem in item.children" :key="subItem.path">{{subItem.name}}</a-menu-item>
@@ -32,7 +35,6 @@ export default {
     const store = useStore();
     let menuData=reactive([]),
         selectedKeys = ref([store.state.activeKey]);
-  
     menuData=[
       {
          name:'菜单一',

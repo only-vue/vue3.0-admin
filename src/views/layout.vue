@@ -5,7 +5,7 @@
                 <Header  />
             </a-layout-header>
             <a-layout>
-                <a-layout-sider>
+                <a-layout-sider v-if="store.state.collapsed">
                     <Menu  />
                 </a-layout-sider>
                 <a-layout-content class="layout-tabs">
